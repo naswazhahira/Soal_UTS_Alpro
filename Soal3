@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-    char kode[9]; // Ukuran 9 untuk menampung 8 digit dan 1 karakter null ('\0')
+    string kode;
 
     // Input kode transaksi
     cout<<"Masukkan kode transaksi (8 digit): ";

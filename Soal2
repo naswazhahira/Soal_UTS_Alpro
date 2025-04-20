@@ -4,18 +4,15 @@
 using namespace std;
 
 void hitungBiayaParkir(string kodeParkir, int jamKeluar) {
-    // Ambil informasi dari kode parkir
     int jenisKendaraan = stoi(kodeParkir.substr(0, 2));
     int jamMasuk = stoi(kodeParkir.substr(2, 4));
     string lokasiParkir = kodeParkir.substr(6, 4);
 
-    // Konversi waktu masuk dan keluar ke format jam dan menit
     int jamMasukH = jamMasuk / 100;
     int jamMasukM = jamMasuk % 100;
     int jamKeluarH = jamKeluar / 100;
     int jamKeluarM = jamKeluar % 100;
 
-    // Hitung total waktu parkir dalam menit
     int totalMenit = ((jamKeluarH * 60 + jamKeluarM) - (jamMasukH * 60 + jamMasukM));
 
     if (totalMenit < 0) {
@@ -23,28 +20,26 @@ void hitungBiayaParkir(string kodeParkir, int jamKeluar) {
         return;
     }
 
-    // Hitung jumlah jam, jika ada sisa menit dihitung sebagai 1 jam tambahan
     int totalJam = totalMenit / 60;
     if (totalMenit % 60 > 0) {
         totalJam += 1;
     }
 
-    // Tentukan tarif berdasarkan jenis kendaraan
     int tarifPertama, tarifSelanjutnya;
     string jenis;
 
     switch (jenisKendaraan) {
-        case 10:  // Mobil pribadi
+        case 10:
             tarifPertama = 5000;
             tarifSelanjutnya = 3000;
             jenis = "Mobil Pribadi";
             break;
-        case 20:  // Motor
+        case 20:
             tarifPertama = 3000;
             tarifSelanjutnya = 2000;
             jenis = "Motor";
             break;
-        case 30:  // Bus
+        case 30: 
             tarifPertama = 10000;
             tarifSelanjutnya = 7000;
             jenis = "Bus";
@@ -54,10 +49,8 @@ void hitungBiayaParkir(string kodeParkir, int jamKeluar) {
             return;
     }
 
-    // Hitung biaya parkir dengan tarif yang benar
     int biayaTotal = tarifPertama + (max(0, totalJam - 1) * tarifSelanjutnya);
 
-    // Tampilkan hasil
     cout << "Jenis Kendaraan: " << jenis << endl;
     cout << "Waktu Masuk: " << jamMasukH << ":" << (jamMasukM < 10 ? "0" : "") << jamMasukM << endl;
     cout << "Waktu Keluar: " << jamKeluarH << ":" << (jamKeluarM < 10 ? "0" : "") << jamKeluarM << endl;
@@ -76,6 +69,6 @@ int main() {
     cin >> jamKeluar;
 
     hitungBiayaParkir(kodeParkir, jamKeluar);
-
-    return 0;
+   
+   return 0;
 }
